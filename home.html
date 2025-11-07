@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Freedom Library - Your Academic Resource Hub</title>
+    <link rel="stylesheet" href="./CSS/home.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <!-- Header -->
+    <header>
+      <div class="container header-content">
+        <div class="logo">
+          <i class="fas fa-book-open"></i>
+          <span>Freedom Library</span>
+        </div>
+        <nav>
+          <ul>
+            <li><a href="./home.html" class="active">Home</a></li>
+            <li><a href="./book.html">Books</a></li>
+            <li><a href="./videos.html">Videos</a></li>
+            <li><a href="./Courses.html">Courses</a></li>
+            <li><a href="./Past Questions.html">Past Questions</a></li>
+            <li><a href="./about.html">About</a></li>
+          </ul>
+        </nav>
+        <div class="auth-buttons">
+          <!-- Checkboxes trigger modals -->
+          <label for="login-toggle" class="btn btn-outline">Login</label>
+          <label for="register-toggle" class="btn btn-primary">Register</label>
+        </div>
+      </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+      <div class="container">
+        <h1>Unlock Academic Freedom</h1>
+        <p>
+          Access textbooks, courses, video tutorials, and past exam questions
+          all in one place.
+        </p>
+        <div class="search-container">
+          <div class="search-bar">
+            <input
+              type="text"
+              placeholder="Search for books, courses, videos..."
+            />
+            <button><i class="fas fa-search"></i> Search</button>
+          </div>
+          <!-- Filter button now use radio inputs -->
+          <div class="filters">
+            <input type="radio" name="filter" id="filter-all" checked />
+            <label for="filter-all" class="filter-btn">All</label>
+
+            <input type="radio" name="filter" id="filter-math" />
+            <label for="filter-math" class="filter-btn">Mathematics</label>
+
+            <input type="radio" name="filter" id="filter-physics" />
+            <label for="filter-physics" class="filter-btn">Physics</label>
+
+            <input type="radio" name="filter" id="filter-chemistry" />
+            <label for="filter-chemistry" class="filter-btn">Chemistry</label>
+
+            <input type="radio" name="filter" id="filter-cs" />
+            <label for="filter-cs" class="filter-btn">Computer Science</label>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features -->
+    <section class="features">
+      <div class="container">
+        <div class="section-title">
+          <h2>Everything You Need for Academic Success</h2>
+          <p>
+            Our e-Library provides exceptional resources to support your
+            educational journey
+          </p>
+        </div>
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="feature-icon"><i class="fas fa-book"></i></div>
+            <h3>Textbooks</h3>
+            <p>Thousands of textbooks across all disciplines.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon"><i class="fas fa-video"></i></div>
+            <h3>Video Tutorials</h3>
+            <p>Learn complex concepts through expert lectures.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon"><i class="fas fa-file-alt"></i></div>
+            <h3>Course Outlines</h3>
+            <p>Plan your studies with detailed course outlines.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-question-circle"></i>
+            </div>
+            <h3>Past Questions</h3>
+            <p>Practice with exam questions and solutions.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Resources -->
+    x
+    <section class="resources">
+      <div class="container">
+        <div class="section-title">
+          <h2>Explore Our Resources</h2>
+          <p>Find materials you need for your studies</p>
+        </div>
+
+        <div class="resource-tabs">
+          <button class="tab-btn"><i class="fas fa-book"></i> Books</button>
+          <button class="tab-btn"><i class="fas fa-video"></i> Videos</button>
+          <button class="tab-btn">
+            <i class="fas fa-file-alt"></i> Courses
+          </button>
+          <button class="tab-btn">
+            <i class="fas fa-question-circle"></i> Past Questions
+          </button>
+        </div>
+
+        <div class="resource-grid">
+          <div class="resource-card">
+            <div class="resource-img"><i class="fas fa-book"></i></div>
+            <div class="resource-info">
+              <h3>Advanced Calculus</h3>
+              <p>Dr. Hellen</p>
+              <div class="resource-meta">
+                <span><i class="fas fa-tag"></i> Mathematics</span>
+                <span><i class="fas fa-calendar"></i> 2022</span>
+              </div>
+              <a href="#" class="btn-small">View Resource</a>
+            </div>
+          </div>
+
+          <div class="resource-card">
+            <div class="resource-img"><i class="fas fa-video"></i></div>
+            <div class="resource-info">
+              <h3>Quantum Physics Explained</h3>
+              <p>Dr. Wilson</p>
+              <div class="resource-meta">
+                <span><i class="fas fa-tag"></i> Physics</span>
+                <span><i class="fas fa-clock"></i> 60 min</span>
+              </div>
+              <a href="#" class="btn-small">Watch Video</a>
+            </div>
+          </div>
+
+          <div class="resource-card">
+            <div class="resource-img"><i class="fas fa-file-alt"></i></div>
+            <div class="resource-info">
+              <h3>Data Structures</h3>
+              <p>CSC 101</p>
+              <div class="resource-meta">
+                <span><i class="fas fa-tag"></i> Computer Science</span>
+                <span><i class="fas fa-star"></i> 3 credits</span>
+              </div>
+              <a href="#" class="btn-small">View Outline</a>
+            </div>
+          </div>
+
+          <div class="resource-card">
+            <div class="resource-img">
+              <i class="fas fa-question-circle"></i>
+            </div>
+            <div class="resource-info">
+              <h3>Mathematics Final Exam</h3>
+              <p>MATH 301</p>
+              <div class="resource-meta">
+                <span><i class="fas fa-calendar"></i> 2022</span>
+                <span><i class="fas fa-file"></i> 8 pages</span>
+              </div>
+              <a href="#" class="btn-small">View Questions</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- is it possible to put image in an icon, and also createa testimonial section as well -->
+    <!-- Footer -->
+    <footer>
+      <div class="container footer-content">
+        <div class="footer-column">
+          <h3>Freedom Library</h3>
+          <p>
+            Your academic resource hub with textbooks, courses, and
+            past-questions.
+          </p>
+          <div class="social-links">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+          </div>
+        </div>
+        <div class="footer-column">
+          <h3>Quick Links</h3>
+          <ul class="footer-links">
+            <li><a href="./home.html">Home</a></li>
+            <li><a href="./book.html">Books</a></li>
+            <li><a href="./videos.html">Videos</a></li>
+            <li><a href="./Courses.html">Courses</a></li>
+            <li><a href="./Past Questions.html">Past Questions</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>Resources</h3>
+          <ul class="footer-links">
+            <li><a href="#">Mathematics</a></li>
+            <li><a href="#">Physics</a></li>
+            <li><a href="#">Chemistry</a></li>
+            <li><a href="#">Biology</a></li>
+            <li><a href="#">Computer Science</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>Contact</h3>
+          <ul class="footer-links">
+            <li><i class="fas fa-envelope"></i> info@Freedom Library.edu</li>
+            <li><i class="fas fa-phone"></i> +234 9018245357</li>
+            <li><i class="fas fa-map-marker-alt"></i> Academic City Campus</li>
+          </ul>
+        </div>
+      </div>
+      <div class="copyright">
+        <p>&copy; 2025 Freedom Library. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <!-- Hidden checkboxes for modals -->
+    <input type="checkbox" id="login-toggle" class="modal-toggle" />
+    <input type="checkbox" id="register-toggle" class="modal-toggle" />
+
+    <!-- Login Modal -->
+    <div class="modal-overlay">
+      <div class="modal" id="login-modal">
+        <div class="modal-header">
+          <h2>Login</h2>
+          <label for="login-toggle" class="close-btn"
+            ><i class="fas fa-times"></i
+          ></label>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="form-group">
+              <label>Email Address</label>
+              <input type="email" placeholder="Enter your email" required />
+            </div>
+            <div class="form-group">
+              <label>Password</label>
+              <input
+                type="password"
+                placeholder="Enter your password"
+                required
+              />
+            </div>
+            <button type="submit" class="btn btn-primary">Login</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div class="modal-overlay">
+      <div class="modal" id="register-modal">
+        <div class="modal-header">
+          <h2>Register</h2>
+          <label for="register-toggle" class="close-btn"
+            ><i class="fas fa-times"></i
+          ></label>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="form-group">
+              <label>Full Name</label>
+              <input type="text" placeholder="Enter your name" required />
+            </div>
+            <div class="form-group">
+              <label>Email Address</label>
+              <input type="email" placeholder="Enter your email" required />
+            </div>
+            <div class="form-group">
+              <label>Password</label>
+              <input type="password" placeholder="Create a password" required />
+            </div>
+            <button type="submit" class="btn btn-primary">Register</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+<!-- See if you can add a blog to the webste, and check if you can get it from group1 project -->
