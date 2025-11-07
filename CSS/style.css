@@ -202,6 +202,12 @@ nav a.active::after {
   border-radius: 30px;
   cursor: pointer;
   transition: var(--transition);
+  -webkit-backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
 }
 
@@ -368,7 +374,6 @@ nav a.active::after {
   background: var(--secondary);
 }
 
-/* Modals */
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -380,6 +385,7 @@ nav a.active::after {
   align-items: center;
   justify-content: center;
   z-index: 1000;
+  -webkit-backdrop-filter: blur(5px);
   backdrop-filter: blur(5px);
 }
 
@@ -650,6 +656,7 @@ footer {
   padding: 8px 20px;
   cursor: pointer;
   transition: var(--transition);
+  -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
 }
 

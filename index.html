@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>eLibrary - Your Academic Resource Hub</title>
-    <link rel="stylesheet" href="./CSS/one.css" />
+    <title>Freedom Library - Your Academic Resource Hub</title>
+    <link rel="stylesheet" href="./CSS/style.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
@@ -16,16 +16,16 @@
       <div class="container header-content">
         <div class="logo">
           <i class="fas fa-book-open"></i>
-          <span>eLibrary</span>
+          <span>Freedom Library</span>
         </div>
         <nav>
           <ul>
-            <li><a href="#" class="active">Home</a></li>
-            <li><a href="#">Books</a></li>
-            <li><a href="#">Videos</a></li>
-            <li><a href="#">Courses</a></li>
+            <li><a href="./index.html" class="active">Home</a></li>
+            <li><a href="./book.html">Books</a></li>
+            <li><a href="./videos.html">Videos</a></li>
+            <li><a href="./Courses.html">Courses</a></li>
             <li><a href="./Past Questions.html">Past Questions</a></li>
-            <li><a href="#">About</a></li>
+            <li><a href="./about.html">About</a></li>
           </ul>
         </nav>
         <div class="auth-buttons">
@@ -52,15 +52,7 @@
             />
             <button><i class="fas fa-search"></i> Search</button>
           </div>
-          <!-- <div class="filters">
-            <button class="filter-btn active">All</button>
-            <button class="filter-btn">Mathematics</button>
-            <button class="filter-btn">Physics</button>
-            <button class="filter-btn">Chemistry</button>
-            <button class="filter-btn">Computer Science</button>
-          </div> -->
-
-          <!-- Filter buttons now use radio inputs -->
+          <!-- Filter button now use radio inputs -->
           <div class="filters">
             <input type="radio" name="filter" id="filter-all" checked />
             <label for="filter-all" class="filter-btn">All</label>
@@ -87,7 +79,8 @@
         <div class="section-title">
           <h2>Everything You Need for Academic Success</h2>
           <p>
-            Our eLibrary provides resources to support your educational journey
+            Our e-Library provides exceptional resources to support your
+            educational journey
           </p>
         </div>
         <div class="features-grid">
@@ -118,16 +111,16 @@
     </section>
 
     <!-- Resources -->
+    x
     <section class="resources">
       <div class="container">
         <div class="section-title">
           <h2>Explore Our Resources</h2>
           <p>Find materials you need for your studies</p>
         </div>
+
         <div class="resource-tabs">
-          <button class="tab-btn active">
-            <i class="fas fa-book"></i> Books
-          </button>
+          <button class="tab-btn"><i class="fas fa-book"></i> Books</button>
           <button class="tab-btn"><i class="fas fa-video"></i> Videos</button>
           <button class="tab-btn">
             <i class="fas fa-file-alt"></i> Courses
@@ -136,12 +129,13 @@
             <i class="fas fa-question-circle"></i> Past Questions
           </button>
         </div>
+
         <div class="resource-grid">
           <div class="resource-card">
             <div class="resource-img"><i class="fas fa-book"></i></div>
             <div class="resource-info">
-              <h3>Advanced Mathematics</h3>
-              <p>Dr. Johnson</p>
+              <h3>Advanced Calculus</h3>
+              <p>Dr. Hellen</p>
               <div class="resource-meta">
                 <span><i class="fas fa-tag"></i> Mathematics</span>
                 <span><i class="fas fa-calendar"></i> 2022</span>
@@ -149,6 +143,7 @@
               <a href="#" class="btn-small">View Resource</a>
             </div>
           </div>
+
           <div class="resource-card">
             <div class="resource-img"><i class="fas fa-video"></i></div>
             <div class="resource-info">
@@ -161,34 +156,70 @@
               <a href="#" class="btn-small">Watch Video</a>
             </div>
           </div>
+
+          <div class="resource-card">
+            <div class="resource-img"><i class="fas fa-file-alt"></i></div>
+            <div class="resource-info">
+              <h3>Data Structures</h3>
+              <p>CSC 101</p>
+              <div class="resource-meta">
+                <span><i class="fas fa-tag"></i> Computer Science</span>
+                <span><i class="fas fa-star"></i> 3 credits</span>
+              </div>
+              <a href="#" class="btn-small">View Outline</a>
+            </div>
+          </div>
+
+          <div class="resource-card">
+            <div class="resource-img">
+              <i class="fas fa-question-circle"></i>
+            </div>
+            <div class="resource-info">
+              <h3>Mathematics Final Exam</h3>
+              <p>MATH 301</p>
+              <div class="resource-meta">
+                <span><i class="fas fa-calendar"></i> 2022</span>
+                <span><i class="fas fa-file"></i> 8 pages</span>
+              </div>
+              <a href="#" class="btn-small">View Questions</a>
+            </div>
+          </div>
         </div>
       </div>
     </section>
-
+    <!-- is it possible to put image in an icon, and also createa testimonial section as well -->
     <!-- Footer -->
     <footer>
       <div class="container footer-content">
         <div class="footer-column">
-          <h3>eLibrary</h3>
+          <h3>Freedom Library</h3>
           <p>
-            Your academic resource hub with textbooks, courses, and past
-            questions.
+            Your academic resource hub with textbooks, courses, and
+            past-questions.
           </p>
           <div class="social-links">
-            <a href="#"><i class="fab fa-facebook-f"></i></a>
-            <a href="#"><i class="fab fa-twitter"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" title="Visit our Facebook page" aria-label="Facebook"
+              ><i class="fab fa-facebook-f"></i
+            ></a>
+            <a href="#" title="Visit our Twitter page" aria-label="Twitter"
+              ><i class="fab fa-twitter"></i
+            ></a>
+            <a href="#" title="Visit our Instagram page" aria-label="Instagram"
+              ><i class="fab fa-instagram"></i
+            ></a>
+            <a href="#" title="Visit our LinkedIn page" aria-label="LinkedIn"
+              ><i class="fab fa-linkedin-in"></i
+            ></a>
           </div>
         </div>
         <div class="footer-column">
           <h3>Quick Links</h3>
           <ul class="footer-links">
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Books</a></li>
-            <li><a href="#">Videos</a></li>
-            <li><a href="#">Courses</a></li>
-            <li><a href="#">Past Questions</a></li>
+            <li><a href="./index.html">Home</a></li>
+            <li><a href="./book.html">Books</a></li>
+            <li><a href="./videos.html">Videos</a></li>
+            <li><a href="./Courses.html">Courses</a></li>
+            <li><a href="./Past Questions.html">Past Questions</a></li>
           </ul>
         </div>
         <div class="footer-column">
@@ -204,14 +235,14 @@
         <div class="footer-column">
           <h3>Contact</h3>
           <ul class="footer-links">
-            <li><i class="fas fa-envelope"></i> info@elibrary.edu</li>
-            <li><i class="fas fa-phone"></i> +1 (555) 123-4567</li>
+            <li><i class="fas fa-envelope"></i> info@Freedom Library.edu</li>
+            <li><i class="fas fa-phone"></i> +234 9018245357</li>
             <li><i class="fas fa-map-marker-alt"></i> Academic City Campus</li>
           </ul>
         </div>
       </div>
       <div class="copyright">
-        <p>&copy; 2025 eLibrary. All rights reserved.</p>
+        <p>&copy; 2025 Freedom Library. All rights reserved.</p>
       </div>
     </footer>
 
@@ -278,3 +309,4 @@
     </div>
   </body>
 </html>
+<!-- See if you can add a blog to the webste, and check if you can get it from group1 project -->
