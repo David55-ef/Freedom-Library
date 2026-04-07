@@ -1,120 +1,190 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Courses - Freedom Library</title>
-    <link rel="stylesheet" href="./CSS/style.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    />
-  </head>
-  <body>
-    <header>
-      <div class="container header-content">
-        <div class="logo">
-          <i class="fas fa-book-open"></i><span>Freedom Library</span>
-        </div>
-        <nav>
-          <ul>
-            <li><a href="./index.html">Home</a></li>
-            <li><a href="./book.html">Books</a></li>
-            <li><a href="./videos.html">Videos</a></li>
-            <li><a href="./Courses.html" class="active">Courses</a></li>
-            <li><a href="./Past Questions.html">Past Questions</a></li>
-            <li><a href="./about.html">About Us</a></li>
-          </ul>
-        </nav>
-      </div>
-    </header>
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Courses — Freedom Library</title>
+  <link rel="stylesheet" href="./CSS/style.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <style>
+    .page-hero{background:linear-gradient(135deg,rgba(6,95,70,.92),rgba(4,120,87,.95)),url("https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1200")center/cover;color:white;padding:60px 0 50px;text-align:center}
+    .page-hero h1{font-size:2.6rem;font-weight:800;margin-bottom:10px}
+    .page-hero p{font-size:1.1rem;opacity:.9;max-width:560px;margin:0 auto 24px}
+    .page-search{display:flex;max-width:560px;margin:0 auto;background:white;border-radius:50px;overflow:hidden;box-shadow:0 6px 20px rgba(0,0,0,.2)}
+    .page-search input{flex:1;padding:14px 22px;border:none;outline:none;font-size:.95rem;color:#212529}
+    .page-search button{padding:0 24px;background:#059669;color:white;border:none;cursor:pointer;font-weight:600;font-size:.95rem;display:flex;align-items:center;gap:6px}
+    .page-search button:hover{background:#047857}
+    .filter-bar{background:white;border-bottom:1px solid var(--light-gray);padding:14px 0;position:sticky;top:65px;z-index:50}
+    .filter-bar-inner{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+    .filter-pills{display:flex;gap:8px;flex-wrap:wrap;flex:1}
+    .pill{padding:7px 18px;border-radius:30px;border:2px solid var(--light-gray);background:white;cursor:pointer;font-size:.85rem;font-weight:600;color:var(--gray);transition:var(--transition)}
+    .pill:hover,.pill.active{background:#059669;color:white;border-color:#059669}
+    .sort-select{padding:8px 14px;border:2px solid var(--light-gray);border-radius:8px;font-size:.85rem;color:var(--dark);background:white;cursor:pointer;outline:none}
+    .results-count{font-size:.85rem;color:var(--gray);white-space:nowrap}
+    .content-section{padding:40px 0 80px;background:#f5f7fb}
+    .resource-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:24px}
+    .course-card{background:white;border-radius:14px;overflow:hidden;box-shadow:0 3px 10px rgba(0,0,0,.08);transition:var(--transition);border:1px solid var(--light-gray);display:flex;flex-direction:column}
+    .course-card:hover{transform:translateY(-5px);box-shadow:0 12px 28px rgba(0,0,0,.12)}
+    .course-header{padding:24px 20px 16px;background:linear-gradient(135deg,#d1fae5,#a7f3d0);position:relative}
+    .course-code{font-size:.8rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:#059669;margin-bottom:6px}
+    .course-header h3{font-size:1.05rem;font-weight:700;color:#064e3b;line-height:1.4;margin-bottom:0}
+    .course-level{position:absolute;top:16px;right:16px;background:white;color:#059669;font-size:.72rem;font-weight:700;padding:4px 10px;border-radius:20px;border:1px solid #a7f3d0}
+    .course-body{padding:18px;flex:1;display:flex;flex-direction:column}
+    .course-subject{display:inline-flex;align-items:center;gap:5px;font-size:.72rem;font-weight:700;text-transform:uppercase;padding:3px 10px;border-radius:20px;margin-bottom:12px;background:#d1fae5;color:#065f46}
+    .course-instructor{font-size:.85rem;color:var(--gray);margin-bottom:12px}
+    .course-meta{display:flex;gap:14px;font-size:.8rem;color:var(--gray);margin-bottom:16px;flex-wrap:wrap}
+    .course-meta span{display:flex;align-items:center;gap:5px}
+    .course-topics{margin-bottom:16px}
+    .course-topics p{font-size:.8rem;font-weight:700;color:var(--dark);margin-bottom:6px;text-transform:uppercase;letter-spacing:.04em}
+    .topic-tags{display:flex;gap:6px;flex-wrap:wrap}
+    .topic-tag{background:var(--light-gray);color:var(--gray);font-size:.75rem;padding:3px 10px;border-radius:20px}
+    .btn-view{width:100%;display:flex;align-items:center;justify-content:center;gap:8px;padding:10px;background:#059669;color:white;border:none;border-radius:8px;font-size:.9rem;font-weight:600;cursor:pointer;transition:var(--transition);margin-top:auto}
+    .btn-view:hover{background:#047857}
+    .no-results{text-align:center;padding:60px 20px;color:var(--gray);grid-column:1/-1}
+    .no-results i{font-size:3rem;opacity:.25;display:block;margin-bottom:16px}
+    .no-results h3{margin-bottom:8px;color:var(--dark)}
+    .load-more-wrap{text-align:center;margin-top:40px}
+    @media(max-width:640px){.page-hero h1{font-size:2rem}}
+  </style>
+</head>
+<body>
+<header>
+  <div class="container header-content">
+    <div class="logo"><i class="fas fa-book-open"></i><span>Freedom Library</span></div>
+    <button class="menu-toggle" onclick="toggleMenu()"><i class="fas fa-bars"></i></button>
+    <nav id="main-nav">
+      <ul>
+        <li><a href="./index.html">Home</a></li>
+        <li><a href="./book.html">Books</a></li>
+        <li><a href="./videos.html">Videos</a></li>
+        <li><a href="./Courses.html" class="active">Courses</a></li>
+        <li><a href="./past-questions.html">Past Questions</a></li>
+        <li><a href="./about.html">About</a></li>
+      </ul>
+    </nav>
+    <div class="auth-buttons" id="auth-buttons">
+      <button class="btn btn-outline" onclick="openModal('login-modal')"><i class="fas fa-sign-in-alt"></i> Login</button>
+      <button class="btn btn-primary" onclick="openModal('register-modal')"><i class="fas fa-user-plus"></i> Register</button>
+    </div>
+    <div class="user-greeting" id="user-greeting">
+      <i class="fas fa-user-circle" style="font-size:1.4rem"></i>
+      <span id="greeting-name">Student</span>
+      <button class="btn btn-outline" onclick="logout()" style="padding:6px 14px;font-size:.85rem"><i class="fas fa-sign-out-alt"></i> Logout</button>
+    </div>
+  </div>
+</header>
 
-    <section class="hero">
-      <div class="container">
-        <h1>Course Outlines</h1>
-        <p>Plan your studies with detailed course structures and syllabi.</p>
-      </div>
-    </section>
+<section class="page-hero">
+  <div class="container">
+    <h1><i class="fas fa-graduation-cap" style="color:#6ee7b7;margin-right:12px"></i>Course Outlines</h1>
+    <p>Explore detailed course outlines and syllabi — plan your studies and stay ahead of your coursework.</p>
+    <div class="page-search">
+      <input type="text" id="course-search" placeholder="Search by course code, title, or lecturer..."/>
+      <button onclick="doSearch()"><i class="fas fa-search"></i> Search</button>
+    </div>
+  </div>
+</section>
 
-    <section class="resources">
-      <div class="container">
-        <div class="resource-grid">
-          <div class="resource-card">
-            <div class="resource-img"><i class="fas fa-file-alt"></i></div>
-            <div class="resource-info">
-              <h3>Data Structures</h3>
-              <p>CS 101</p>
-              <div class="resource-meta">
-                <span><i class="fas fa-tag"></i> Computer Science</span>
-                <span><i class="fas fa-star"></i> 3 credits</span>
-              </div>
-              <a href="#" class="btn-small">View Outline</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+<div class="filter-bar">
+  <div class="container filter-bar-inner">
+    <div class="filter-pills">
+      <button class="pill active" data-subject="all" onclick="filterSubject('all',this)">All Subjects</button>
+      <button class="pill" data-subject="Mathematics" onclick="filterSubject('Mathematics',this)">Mathematics</button>
+      <button class="pill" data-subject="Physics" onclick="filterSubject('Physics',this)">Physics</button>
+      <button class="pill" data-subject="Chemistry" onclick="filterSubject('Chemistry',this)">Chemistry</button>
+      <button class="pill" data-subject="Biology" onclick="filterSubject('Biology',this)">Biology</button>
+      <button class="pill" data-subject="Computer Science" onclick="filterSubject('Computer Science',this)">Computer Science</button>
+    </div>
+    <select class="sort-select" id="level-filter" onchange="applyFilters()">
+      <option value="all">All Levels</option>
+      <option value="100">100 Level</option>
+      <option value="200">200 Level</option>
+      <option value="300">300 Level</option>
+      <option value="400">400 Level</option>
+    </select>
+    <span class="results-count" id="results-count"></span>
+  </div>
+</div>
 
-    <!-- Footer -->
-    <footer>
-      <div class="container footer-content">
-        <div class="footer-column">
-          <h3>Freedom Library</h3>
-          <p>
-            Your academic resource hub with textbooks, courses, and
-            past-questions.
-          </p>
-          <div class="social-links">
-            <a href="#" title="Facebook" aria-label="Facebook"
-              ><i class="fab fa-facebook-f" aria-hidden="true"></i
-              ><span class="sr-only">Facebook</span></a
-            >
-            <a href="#" title="Twitter" aria-label="Twitter"
-              ><i class="fab fa-twitter" aria-hidden="true"></i
-              ><span class="sr-only">Twitter</span></a
-            >
-            <a href="#" title="Instagram" aria-label="Instagram"
-              ><i class="fab fa-instagram" aria-hidden="true"></i
-              ><span class="sr-only">Instagram</span></a
-            >
-            <a href="#" title="LinkedIn" aria-label="LinkedIn"
-              ><i class="fab fa-linkedin-in" aria-hidden="true"></i
-              ><span class="sr-only">LinkedIn</span></a
-            >
-          </div>
-        </div>
-        <div class="footer-column">
-          <h3>Quick Links</h3>
-          <ul class="footer-links">
-            <li><a href="./index.html">Home</a></li>
-            <li><a href="./book.html">Books</a></li>
-            <li><a href="./videos.html">Videos</a></li>
-            <li><a href="./Courses.html">Courses</a></li>
-            <li><a href="./Past Questions.html">Past Questions</a></li>
-          </ul>
-        </div>
-        <div class="footer-column">
-          <h3>Resources</h3>
-          <ul class="footer-links">
-            <li><a href="#">Mathematics</a></li>
-            <li><a href="#">Physics</a></li>
-            <li><a href="#">Chemistry</a></li>
-            <li><a href="#">Biology</a></li>
-            <li><a href="#">Computer Science</a></li>
-          </ul>
-        </div>
-        <div class="footer-column">
-          <h3>Contact</h3>
-          <ul class="footer-links">
-            <li><i class="fas fa-envelope"></i> info@Freedom Library.edu</li>
-            <li><i class="fas fa-phone"></i> +234 9018245357</li>
-            <li><i class="fas fa-map-marker-alt"></i> Academic City Campus</li>
-          </ul>
-        </div>
+<section class="content-section">
+  <div class="container">
+    <div class="resource-grid" id="courses-grid"></div>
+    <div class="load-more-wrap" id="load-more-wrap" style="display:none">
+      <button class="btn" style="background:#059669;color:white;border-color:#059669" onclick="loadMore()"><i class="fas fa-plus"></i> Load More Courses</button>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container footer-content">
+    <div class="footer-column"><h3>Freedom Library</h3><p>Your academic resource hub — textbooks, videos, courses, and past questions, all free.</p><div class="social-links"><a href="#"><i class="fab fa-facebook-f"></i></a><a href="#"><i class="fab fa-twitter"></i></a><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-linkedin-in"></i></a></div></div>
+    <div class="footer-column"><h3>Quick Links</h3><ul class="footer-links"><li><a href="./index.html">Home</a></li><li><a href="./book.html">Books</a></li><li><a href="./videos.html">Videos</a></li><li><a href="./Courses.html">Courses</a></li><li><a href="./past-questions.html">Past Questions</a></li></ul></div>
+    <div class="footer-column"><h3>Subjects</h3><ul class="footer-links"><li><a href="#">Mathematics</a></li><li><a href="#">Physics</a></li><li><a href="#">Chemistry</a></li><li><a href="#">Biology</a></li><li><a href="#">Computer Science</a></li></ul></div>
+    <div class="footer-column"><h3>Contact</h3><ul class="footer-links"><li><i class="fas fa-envelope" style="margin-right:8px;color:var(--accent)"></i>info@freedomlibrary.edu.ng</li><li><i class="fas fa-phone" style="margin-right:8px;color:var(--accent)"></i>+234 901 824 5357</li><li><i class="fas fa-map-marker-alt" style="margin-right:8px;color:var(--accent)"></i>Academic City Campus</li></ul></div>
+  </div>
+  <div class="copyright"><p>&copy; 2025 Freedom Library. All rights reserved.</p></div>
+</footer>
+
+<div class="modal-overlay" id="login-modal" onclick="closeModalOutside(event,'login-modal')"><div class="modal"><div class="modal-header"><h2><i class="fas fa-sign-in-alt"></i> Login</h2><button class="close-btn" onclick="closeModal('login-modal')"><i class="fas fa-times"></i></button></div><div class="modal-body"><div class="alert" id="login-alert"></div><form id="login-form" onsubmit="handleLogin(event)"><div class="form-group"><label>Email</label><input type="email" id="login-email" placeholder="Enter your email" required/></div><div class="form-group"><label>Password</label><input type="password" id="login-password" placeholder="Enter your password" required/></div><button type="submit" class="btn btn-primary" id="login-btn"><i class="fas fa-sign-in-alt"></i> Login</button></form><div class="switch-modal">No account? <a onclick="switchModal('login-modal','register-modal')">Register here</a></div></div></div></div>
+<div class="modal-overlay" id="register-modal" onclick="closeModalOutside(event,'register-modal')"><div class="modal"><div class="modal-header"><h2><i class="fas fa-user-plus"></i> Register</h2><button class="close-btn" onclick="closeModal('register-modal')"><i class="fas fa-times"></i></button></div><div class="modal-body"><div class="alert" id="register-alert"></div><form id="register-form" onsubmit="handleRegister(event)"><div class="form-group"><label>Full Name</label><input type="text" id="reg-name" placeholder="Enter your full name" required/></div><div class="form-group"><label>Email</label><input type="email" id="reg-email" placeholder="Enter your email" required/></div><div class="form-group"><label>I am a</label><select id="reg-role" style="width:100%;padding:12px 15px;border:2px solid var(--light-gray);border-radius:10px;font-size:.95rem"><option value="student">Student</option><option value="lecturer">Lecturer</option></select></div><div class="form-group"><label>Password</label><input type="password" id="reg-password" placeholder="Min. 8 characters" required minlength="8"/></div><button type="submit" class="btn btn-primary" id="register-btn"><i class="fas fa-user-plus"></i> Create Account</button></form><div class="switch-modal">Already have an account? <a onclick="switchModal('register-modal','login-modal')">Login here</a></div></div></div></div>
+
+<script src="./JS/shared.js"></script>
+<script>
+const COURSES=[
+  {id:1,code:'CSC101',title:'Introduction to Computing',lecturer:'Prof. Adeyemi',subject:'Computer Science',level:'100',credits:3,topics:['Binary Systems','Computer Hardware','Operating Systems','Intro to Programming']},
+  {id:2,code:'MAT201',title:'Calculus II',lecturer:'Dr. Nwosu',subject:'Mathematics',level:'200',credits:4,topics:['Integration Techniques','Series','Partial Derivatives','Multiple Integrals']},
+  {id:3,code:'PHY101',title:'Mechanics and Thermal Physics',lecturer:'Dr. Bello',subject:'Physics',level:'100',credits:4,topics:['Kinematics','Dynamics','Thermodynamics','Waves']},
+  {id:4,code:'CHM301',title:'Physical Chemistry',lecturer:'Dr. Eze',subject:'Chemistry',level:'300',credits:3,topics:['Thermodynamics','Chemical Kinetics','Quantum Mechanics','Spectroscopy']},
+  {id:5,code:'BIO201',title:'Cell Biology',lecturer:'Prof. Okafor',subject:'Biology',level:'200',credits:3,topics:['Cell Structure','Mitosis','DNA Replication','Protein Synthesis']},
+  {id:6,code:'CSC301',title:'Data Structures',lecturer:'Dr. Chukwu',subject:'Computer Science',level:'300',credits:3,topics:['Arrays','Linked Lists','Trees','Graphs','Sorting Algorithms']},
+  {id:7,code:'MAT301',title:'Linear Algebra',lecturer:'Prof. Okeke',subject:'Mathematics',level:'300',credits:3,topics:['Vector Spaces','Matrix Operations','Eigenvalues','Linear Transformations']},
+  {id:8,code:'PHY201',title:'Electromagnetism',lecturer:'Dr. Adeyemi',subject:'Physics',level:'200',credits:4,topics:['Electric Fields','Magnetic Fields','Faraday\'s Law','Maxwell\'s Equations']},
+  {id:9,code:'CHM101',title:'General Chemistry',lecturer:'Prof. Salami',subject:'Chemistry',level:'100',credits:3,topics:['Atomic Structure','Bonding','Stoichiometry','Reactions']},
+  {id:10,code:'CSC401',title:'Software Engineering',lecturer:'Dr. Ibrahim',subject:'Computer Science',level:'400',credits:3,topics:['SDLC','Agile','System Design','Testing','Deployment']},
+];
+let activeSubject='all',searchTerm='',activeLevel='all',visibleCount=8,_filtered=COURSES;
+function renderCourses(list){
+  const grid=document.getElementById('courses-grid');
+  const wrap=document.getElementById('load-more-wrap');
+  const cnt=document.getElementById('results-count');
+  _filtered=list;
+  if(cnt)cnt.textContent=`${list.length} course${list.length!==1?'s':''} found`;
+  if(!list.length){grid.innerHTML=`<div class="no-results"><i class="fas fa-graduation-cap"></i><h3>No courses found</h3><p>Try a different subject or level.</p></div>`;if(wrap)wrap.style.display='none';return;}
+  if(wrap)wrap.style.display=list.length>visibleCount?'block':'none';
+  grid.innerHTML=list.slice(0,visibleCount).map(c=>`
+    <div class="course-card">
+      <div class="course-header">
+        <div class="course-code">${c.code}</div>
+        <h3>${c.title}</h3>
+        <span class="course-level">${c.level} Level</span>
       </div>
-      <div class="copyright">
-        <p>&copy; 2025 Freedom Library. All rights reserved.</p>
+      <div class="course-body">
+        <span class="course-subject"><i class="fas fa-tag"></i> ${c.subject}</span>
+        <p class="course-instructor"><i class="fas fa-chalkboard-teacher" style="margin-right:5px;opacity:.6"></i>${c.lecturer}</p>
+        <div class="course-meta">
+          <span><i class="fas fa-star"></i> ${c.credits} Credits</span>
+          <span><i class="fas fa-layer-group"></i> ${c.level} Level</span>
+        </div>
+        <div class="course-topics">
+          <p>Topics Covered</p>
+          <div class="topic-tags">${c.topics.map(t=>`<span class="topic-tag">${t}</span>`).join('')}</div>
+        </div>
+        <button class="btn-view" onclick="handleView(${c.id},'${c.title}')"><i class="fas fa-file-alt"></i> View Course Outline</button>
       </div>
-    </footer>
-  </body>
+    </div>`).join('');
+  grid.querySelectorAll('.course-card').forEach((c,i)=>{c.style.opacity='0';c.style.transform='translateY(16px)';setTimeout(()=>{c.style.transition='opacity .3s ease,transform .3s ease';c.style.opacity='1';c.style.transform='translateY(0)';},i*55);});
+}
+function applyFilters(){
+  let f=COURSES.filter(c=>(activeSubject==='all'||c.subject===activeSubject)&&(activeLevel==='all'||c.level===activeLevel)&&(!searchTerm||c.title.toLowerCase().includes(searchTerm)||c.code.toLowerCase().includes(searchTerm)||c.lecturer.toLowerCase().includes(searchTerm)));
+  visibleCount=8;renderCourses(f);
+}
+function filterSubject(s,btn){activeSubject=s;document.querySelectorAll('.pill').forEach(p=>p.classList.remove('active'));if(btn)btn.classList.add('active');else document.querySelectorAll('.pill').forEach(p=>{if(p.dataset.subject===s)p.classList.add('active');});applyFilters();}
+function doSearch(){searchTerm=document.getElementById('course-search').value.trim().toLowerCase();applyFilters();}
+function loadMore(){visibleCount+=8;renderCourses(_filtered);}
+function handleView(id,title){if(!getUser()){openModal('login-modal');showToast('Please log in to view course outlines.','info');return;}showToast(`Opening "${title}" outline...`,'success');}
+document.getElementById('course-search').addEventListener('keydown',e=>{if(e.key==='Enter')doSearch();});
+document.getElementById('level-filter').addEventListener('change',e=>{activeLevel=e.target.value;applyFilters();});
+applyFilters();
+</script>
+</body>
 </html>

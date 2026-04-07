@@ -3,46 +3,48 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Videos — Freedom Library</title>
+  <title>Past Questions — Freedom Library</title>
   <link rel="stylesheet" href="./CSS/style.css"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
   <style>
-    .page-hero{background:linear-gradient(135deg,rgba(157,23,77,.9),rgba(131,24,67,.95)),url("https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=1200")center/cover;color:white;padding:60px 0 50px;text-align:center}
+    .page-hero{background:linear-gradient(135deg,rgba(146,64,14,.92),rgba(120,53,15,.95)),url("https://images.unsplash.com/photo-1606326608606-aa0b62935f2b?w=1200")center/cover;color:white;padding:60px 0 50px;text-align:center}
     .page-hero h1{font-size:2.6rem;font-weight:800;margin-bottom:10px}
     .page-hero p{font-size:1.1rem;opacity:.9;max-width:560px;margin:0 auto 24px}
     .page-search{display:flex;max-width:560px;margin:0 auto;background:white;border-radius:50px;overflow:hidden;box-shadow:0 6px 20px rgba(0,0,0,.2)}
     .page-search input{flex:1;padding:14px 22px;border:none;outline:none;font-size:.95rem;color:#212529}
-    .page-search button{padding:0 24px;background:#e11d48;color:white;border:none;cursor:pointer;font-weight:600;font-size:.95rem;display:flex;align-items:center;gap:6px}
-    .page-search button:hover{background:#be123c}
+    .page-search button{padding:0 24px;background:#d97706;color:white;border:none;cursor:pointer;font-weight:600;font-size:.95rem;display:flex;align-items:center;gap:6px}
+    .page-search button:hover{background:#b45309}
     .filter-bar{background:white;border-bottom:1px solid var(--light-gray);padding:14px 0;position:sticky;top:65px;z-index:50}
     .filter-bar-inner{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
     .filter-pills{display:flex;gap:8px;flex-wrap:wrap;flex:1}
     .pill{padding:7px 18px;border-radius:30px;border:2px solid var(--light-gray);background:white;cursor:pointer;font-size:.85rem;font-weight:600;color:var(--gray);transition:var(--transition)}
-    .pill:hover,.pill.active{background:#9d174d;color:white;border-color:#9d174d}
+    .pill:hover,.pill.active{background:#d97706;color:white;border-color:#d97706}
     .sort-select{padding:8px 14px;border:2px solid var(--light-gray);border-radius:8px;font-size:.85rem;color:var(--dark);background:white;cursor:pointer;outline:none}
     .results-count{font-size:.85rem;color:var(--gray);white-space:nowrap}
     .content-section{padding:40px 0 80px;background:#f5f7fb}
-    .resource-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:24px}
-    .video-card{background:white;border-radius:14px;overflow:hidden;box-shadow:0 3px 10px rgba(0,0,0,.08);transition:var(--transition);border:1px solid var(--light-gray)}
-    .video-card:hover{transform:translateY(-5px);box-shadow:0 12px 28px rgba(0,0,0,.12)}
-    .video-thumb{height:180px;background:linear-gradient(135deg,#fce7f3,#fbcfe8);display:flex;align-items:center;justify-content:center;position:relative;cursor:pointer;overflow:hidden}
-    .video-thumb i{font-size:3.5rem;color:#9d174d;transition:transform .3s}
-    .video-card:hover .video-thumb i{transform:scale(1.1)}
-    .play-btn{position:absolute;width:56px;height:56px;background:rgba(157,23,77,.9);border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;font-size:1.4rem;transition:var(--transition)}
-    .video-card:hover .play-btn{background:rgba(157,23,77,1);transform:scale(1.08)}
-    .duration-badge{position:absolute;bottom:10px;right:12px;background:rgba(0,0,0,.75);color:white;font-size:.72rem;font-weight:700;padding:3px 9px;border-radius:20px}
-    .video-body{padding:18px}
-    .video-subject{display:inline-flex;align-items:center;gap:5px;font-size:.72rem;font-weight:700;text-transform:uppercase;padding:3px 10px;border-radius:20px;margin-bottom:8px;background:#fce7f3;color:#9d174d}
-    .video-body h3{font-size:.98rem;font-weight:700;color:var(--dark);margin-bottom:5px;line-height:1.4}
-    .video-instructor{font-size:.83rem;color:var(--gray);margin-bottom:12px}
-    .video-meta{display:flex;gap:14px;font-size:.8rem;color:var(--gray);margin-bottom:14px}
-    .video-meta span{display:flex;align-items:center;gap:5px}
-    .btn-watch{width:100%;display:flex;align-items:center;justify-content:center;gap:8px;padding:10px;background:#9d174d;color:white;border:none;border-radius:8px;font-size:.9rem;font-weight:600;cursor:pointer;transition:var(--transition)}
-    .btn-watch:hover{background:#7f1d5a}
+    .resource-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:24px}
+    .pq-card{background:white;border-radius:14px;overflow:hidden;box-shadow:0 3px 10px rgba(0,0,0,.08);transition:var(--transition);border:1px solid var(--light-gray);display:flex;flex-direction:column;border-top:4px solid #d97706}
+    .pq-card:hover{transform:translateY(-5px);box-shadow:0 12px 28px rgba(0,0,0,.12)}
+    .pq-icon{height:130px;background:linear-gradient(135deg,#fef3c7,#fde68a);display:flex;align-items:center;justify-content:center;font-size:3.5rem;color:#92400e;position:relative}
+    .year-badge{position:absolute;top:12px;right:12px;background:#d97706;color:white;font-size:.8rem;font-weight:800;padding:4px 12px;border-radius:20px}
+    .pq-body{padding:18px;flex:1;display:flex;flex-direction:column}
+    .pq-subject{display:inline-flex;align-items:center;gap:5px;font-size:.72rem;font-weight:700;text-transform:uppercase;padding:3px 10px;border-radius:20px;margin-bottom:8px;background:#fef3c7;color:#92400e}
+    .pq-body h3{font-size:.98rem;font-weight:700;color:var(--dark);margin-bottom:5px;line-height:1.4}
+    .pq-code{font-size:.83rem;color:var(--gray);margin-bottom:12px}
+    .pq-meta{display:flex;gap:14px;font-size:.8rem;color:var(--gray);margin-bottom:16px}
+    .pq-meta span{display:flex;align-items:center;gap:5px}
+    .pq-actions{display:flex;gap:8px;margin-top:auto}
+    .btn-view-pq{flex:1;display:flex;align-items:center;justify-content:center;gap:6px;padding:9px;background:#d97706;color:white;border:none;border-radius:8px;font-size:.85rem;font-weight:600;cursor:pointer;transition:var(--transition)}
+    .btn-view-pq:hover{background:#b45309}
+    .btn-dl{width:38px;height:38px;display:flex;align-items:center;justify-content:center;background:var(--light-gray);color:var(--gray);border:none;border-radius:8px;cursor:pointer;transition:var(--transition)}
+    .btn-dl:hover{background:#d1fae5;color:#059669}
     .no-results{text-align:center;padding:60px 20px;color:var(--gray);grid-column:1/-1}
     .no-results i{font-size:3rem;opacity:.25;display:block;margin-bottom:16px}
     .no-results h3{margin-bottom:8px;color:var(--dark)}
     .load-more-wrap{text-align:center;margin-top:40px}
+    .tip-banner{background:linear-gradient(135deg,#fef3c7,#fde68a);border:1px solid #fcd34d;border-radius:12px;padding:16px 20px;margin-bottom:30px;display:flex;gap:12px;align-items:flex-start}
+    .tip-banner i{color:#d97706;font-size:1.3rem;flex-shrink:0;margin-top:2px}
+    .tip-banner p{font-size:.88rem;color:#92400e;line-height:1.6;margin:0}
     @media(max-width:640px){.page-hero h1{font-size:2rem}}
   </style>
 </head>
@@ -55,9 +57,9 @@
       <ul>
         <li><a href="./index.html">Home</a></li>
         <li><a href="./book.html">Books</a></li>
-        <li><a href="./videos.html" class="active">Videos</a></li>
+        <li><a href="./videos.html">Videos</a></li>
         <li><a href="./Courses.html">Courses</a></li>
-        <li><a href="./past-questions.html">Past Questions</a></li>
+        <li><a href="./past-questions.html" class="active">Past Questions</a></li>
         <li><a href="./about.html">About</a></li>
       </ul>
     </nav>
@@ -75,10 +77,10 @@
 
 <section class="page-hero">
   <div class="container">
-    <h1><i class="fas fa-video" style="color:#f9a8d4;margin-right:12px"></i>Video Tutorials</h1>
-    <p>Learn from expert instructors through engaging video lessons — watch anytime, anywhere.</p>
+    <h1><i class="fas fa-question-circle" style="color:#fcd34d;margin-right:12px"></i>Past Questions</h1>
+    <p>Practice with real past examination questions — the proven fastest way to prepare for your exams.</p>
     <div class="page-search">
-      <input type="text" id="video-search" placeholder="Search videos by topic, instructor, subject..."/>
+      <input type="text" id="pq-search" placeholder="Search by course code, subject, or year..."/>
       <button onclick="doSearch()"><i class="fas fa-search"></i> Search</button>
     </div>
   </div>
@@ -94,11 +96,13 @@
       <button class="pill" data-subject="Biology" onclick="filterSubject('Biology',this)">Biology</button>
       <button class="pill" data-subject="Computer Science" onclick="filterSubject('Computer Science',this)">Computer Science</button>
     </div>
-    <select class="sort-select" id="sort-select" onchange="applyFilters()">
-      <option value="newest">Newest First</option>
-      <option value="shortest">Shortest First</option>
-      <option value="longest">Longest First</option>
-      <option value="az">A to Z</option>
+    <select class="sort-select" id="year-filter" onchange="applyFilters()">
+      <option value="all">All Years</option>
+      <option value="2024">2024</option>
+      <option value="2023">2023</option>
+      <option value="2022">2022</option>
+      <option value="2021">2021</option>
+      <option value="2020">2020</option>
     </select>
     <span class="results-count" id="results-count"></span>
   </div>
@@ -106,9 +110,13 @@
 
 <section class="content-section">
   <div class="container">
-    <div class="resource-grid" id="videos-grid"></div>
+    <div class="tip-banner">
+      <i class="fas fa-lightbulb"></i>
+      <p><strong>Study Tip:</strong> Past questions are one of the most effective study tools. Practice with at least 3 years of past questions per course to identify recurring topics and question patterns.</p>
+    </div>
+    <div class="resource-grid" id="pq-grid"></div>
     <div class="load-more-wrap" id="load-more-wrap" style="display:none">
-      <button class="btn" style="background:#9d174d;color:white;border-color:#9d174d" onclick="loadMore()"><i class="fas fa-plus"></i> Load More Videos</button>
+      <button class="btn" style="background:#d97706;color:white;border-color:#d97706" onclick="loadMore()"><i class="fas fa-plus"></i> Load More Questions</button>
     </div>
   </div>
 </section>
@@ -128,63 +136,64 @@
 
 <script src="./JS/shared.js"></script>
 <script>
-const VIDEOS=[
-  {id:1,title:'Quantum Physics Explained',instructor:'Dr. Wilson',subject:'Physics',duration:60,year:2023,views:'2.4k'},
-  {id:2,title:'Introduction to Programming',instructor:'Prof. Adeyemi',subject:'Computer Science',duration:45,year:2023,views:'5.1k'},
-  {id:3,title:'Organic Chemistry Reactions',instructor:'Dr. Adebayo',subject:'Chemistry',duration:50,year:2022,views:'3.8k'},
-  {id:4,title:'Calculus Made Easy',instructor:'Dr. Nwosu',subject:'Mathematics',duration:75,year:2023,views:'6.2k'},
-  {id:5,title:'Cell Division and Mitosis',instructor:'Prof. Okafor',subject:'Biology',duration:38,year:2022,views:'1.9k'},
-  {id:6,title:'Newton\'s Laws of Motion',instructor:'Dr. Bello',subject:'Physics',duration:42,year:2021,views:'4.3k'},
-  {id:7,title:'Database Design with SQL',instructor:'Dr. Ibrahim',subject:'Computer Science',duration:90,year:2023,views:'3.1k'},
-  {id:8,title:'Differential Equations',instructor:'Prof. Okeke',subject:'Mathematics',duration:65,year:2022,views:'2.7k'},
-  {id:9,title:'Acid-Base Reactions',instructor:'Dr. Salami',subject:'Chemistry',duration:35,year:2023,views:'1.5k'},
-  {id:10,title:'DNA Structure and Replication',instructor:'Dr. Eze',subject:'Biology',duration:55,year:2022,views:'2.2k'},
+const PQ=[
+  {id:1,code:'MATH301',title:'Calculus Final Exam',subject:'Mathematics',year:2023,semester:'Second',pages:8,type:'Final Exam'},
+  {id:2,code:'PHY201',title:'Electromagnetism Mid-Semester',subject:'Physics',year:2023,semester:'First',pages:6,type:'Mid-Semester'},
+  {id:3,code:'CHM101',title:'General Chemistry Final',subject:'Chemistry',year:2022,semester:'Second',pages:10,type:'Final Exam'},
+  {id:4,code:'CSC201',title:'Data Structures Past Questions',subject:'Computer Science',year:2023,semester:'Second',pages:7,type:'Final Exam'},
+  {id:5,code:'BIO101',title:'Introduction to Biology Exam',subject:'Biology',year:2022,semester:'First',pages:9,type:'Final Exam'},
+  {id:6,code:'MATH201',title:'Linear Algebra Mid-Semester',subject:'Mathematics',year:2022,semester:'First',pages:5,type:'Mid-Semester'},
+  {id:7,code:'PHY101',title:'Mechanics and Thermodynamics',subject:'Physics',year:2021,semester:'Second',pages:8,type:'Final Exam'},
+  {id:8,code:'CHM301',title:'Physical Chemistry Final',subject:'Chemistry',year:2023,semester:'Second',pages:11,type:'Final Exam'},
+  {id:9,code:'CSC101',title:'Introduction to Computing',subject:'Computer Science',year:2021,semester:'First',pages:6,type:'Final Exam'},
+  {id:10,code:'BIO201',title:'Cell Biology Final Exam',subject:'Biology',year:2023,semester:'Second',pages:9,type:'Final Exam'},
+  {id:11,code:'MATH401',title:'Numerical Methods Final',subject:'Mathematics',year:2021,semester:'Second',pages:7,type:'Final Exam'},
+  {id:12,code:'PHY301',title:'Quantum Mechanics Mid-Semester',subject:'Physics',year:2022,semester:'First',pages:5,type:'Mid-Semester'},
 ];
-function fmtDur(m){return m>=60?`${Math.floor(m/60)}h ${m%60}m`:`${m} min`;}
-let activeSubject='all',searchTerm='',visibleCount=8,_filtered=VIDEOS;
-function renderVideos(list){
-  const grid=document.getElementById('videos-grid');
+let activeSubject='all',searchTerm='',activeYear='all',visibleCount=8,_filtered=PQ;
+function renderPQ(list){
+  const grid=document.getElementById('pq-grid');
   const wrap=document.getElementById('load-more-wrap');
   const cnt=document.getElementById('results-count');
   _filtered=list;
-  if(cnt)cnt.textContent=`${list.length} video${list.length!==1?'s':''} found`;
-  if(!list.length){grid.innerHTML=`<div class="no-results"><i class="fas fa-video"></i><h3>No videos found</h3><p>Try a different subject or search term.</p></div>`;if(wrap)wrap.style.display='none';return;}
+  if(cnt)cnt.textContent=`${list.length} paper${list.length!==1?'s':''} found`;
+  if(!list.length){grid.innerHTML=`<div class="no-results"><i class="fas fa-question-circle"></i><h3>No past questions found</h3><p>Try a different subject or year.</p></div>`;if(wrap)wrap.style.display='none';return;}
   if(wrap)wrap.style.display=list.length>visibleCount?'block':'none';
-  grid.innerHTML=list.slice(0,visibleCount).map(v=>`
-    <div class="video-card">
-      <div class="video-thumb" onclick="handleWatch(${v.id},'${v.title}')">
-        <i class="fas fa-play-circle"></i>
-        <div class="play-btn"><i class="fas fa-play" style="margin-left:3px"></i></div>
-        <span class="duration-badge"><i class="fas fa-clock" style="margin-right:4px"></i>${fmtDur(v.duration)}</span>
+  grid.innerHTML=list.slice(0,visibleCount).map(q=>`
+    <div class="pq-card">
+      <div class="pq-icon">
+        <i class="fas fa-file-alt"></i>
+        <span class="year-badge">${q.year}</span>
       </div>
-      <div class="video-body">
-        <span class="video-subject"><i class="fas fa-tag"></i> ${v.subject}</span>
-        <h3>${v.title}</h3>
-        <p class="video-instructor"><i class="fas fa-chalkboard-teacher" style="margin-right:5px;opacity:.6"></i>${v.instructor}</p>
-        <div class="video-meta">
-          <span><i class="fas fa-calendar"></i> ${v.year}</span>
-          <span><i class="fas fa-eye"></i> ${v.views} views</span>
-          <span><i class="fas fa-clock"></i> ${fmtDur(v.duration)}</span>
+      <div class="pq-body">
+        <span class="pq-subject"><i class="fas fa-tag"></i> ${q.subject}</span>
+        <h3>${q.title}</h3>
+        <p class="pq-code"><i class="fas fa-hashtag" style="margin-right:4px;opacity:.6"></i>${q.code}</p>
+        <div class="pq-meta">
+          <span><i class="fas fa-calendar"></i> ${q.year}</span>
+          <span><i class="fas fa-file-alt"></i> ${q.pages} pages</span>
+          <span><i class="fas fa-tag"></i> ${q.type}</span>
         </div>
-        <button class="btn-watch" onclick="handleWatch(${v.id},'${v.title}')"><i class="fas fa-play"></i> Watch Video</button>
+        <div class="pq-actions">
+          <button class="btn-view-pq" onclick="handleView(${q.id},'${q.title}')"><i class="fas fa-eye"></i> View Questions</button>
+          <button class="btn-dl" title="Download" onclick="handleDownload(${q.id},'${q.title}')"><i class="fas fa-download"></i></button>
+        </div>
       </div>
     </div>`).join('');
-  grid.querySelectorAll('.video-card').forEach((c,i)=>{c.style.opacity='0';c.style.transform='translateY(16px)';setTimeout(()=>{c.style.transition='opacity .3s ease,transform .3s ease';c.style.opacity='1';c.style.transform='translateY(0)';},i*55);});
+  grid.querySelectorAll('.pq-card').forEach((c,i)=>{c.style.opacity='0';c.style.transform='translateY(16px)';setTimeout(()=>{c.style.transition='opacity .3s ease,transform .3s ease';c.style.opacity='1';c.style.transform='translateY(0)';},i*55);});
 }
 function applyFilters(){
-  const sort=document.getElementById('sort-select')?.value||'newest';
-  let f=VIDEOS.filter(v=>(activeSubject==='all'||v.subject===activeSubject)&&(!searchTerm||v.title.toLowerCase().includes(searchTerm)||v.instructor.toLowerCase().includes(searchTerm)||v.subject.toLowerCase().includes(searchTerm)));
-  if(sort==='newest')f.sort((a,b)=>b.year-a.year);
-  else if(sort==='shortest')f.sort((a,b)=>a.duration-b.duration);
-  else if(sort==='longest')f.sort((a,b)=>b.duration-a.duration);
-  else f.sort((a,b)=>a.title.localeCompare(b.title));
-  visibleCount=8;renderVideos(f);
+  let f=PQ.filter(q=>(activeSubject==='all'||q.subject===activeSubject)&&(activeYear==='all'||String(q.year)===activeYear)&&(!searchTerm||q.title.toLowerCase().includes(searchTerm)||q.code.toLowerCase().includes(searchTerm)||q.subject.toLowerCase().includes(searchTerm)));
+  f.sort((a,b)=>b.year-a.year);
+  visibleCount=8;renderPQ(f);
 }
 function filterSubject(s,btn){activeSubject=s;document.querySelectorAll('.pill').forEach(p=>p.classList.remove('active'));if(btn)btn.classList.add('active');else document.querySelectorAll('.pill').forEach(p=>{if(p.dataset.subject===s)p.classList.add('active');});applyFilters();}
-function doSearch(){searchTerm=document.getElementById('video-search').value.trim().toLowerCase();applyFilters();}
-function loadMore(){visibleCount+=8;renderVideos(_filtered);}
-function handleWatch(id,title){if(!getUser()){openModal('login-modal');showToast('Please log in to watch videos.','info');return;}showToast(`Loading "${title}"...`,'success');}
-document.getElementById('video-search').addEventListener('keydown',e=>{if(e.key==='Enter')doSearch();});
+function doSearch(){searchTerm=document.getElementById('pq-search').value.trim().toLowerCase();applyFilters();}
+function loadMore(){visibleCount+=8;renderPQ(_filtered);}
+function handleView(id,title){if(!getUser()){openModal('login-modal');showToast('Please log in to view past questions.','info');return;}showToast(`Opening "${title}"...`,'success');}
+function handleDownload(id,title){if(!getUser()){openModal('login-modal');showToast('Please log in to download.','info');return;}showToast(`Downloading "${title}"...`,'success');}
+document.getElementById('pq-search').addEventListener('keydown',e=>{if(e.key==='Enter')doSearch();});
+document.getElementById('year-filter').addEventListener('change',e=>{activeYear=e.target.value;applyFilters();});
 applyFilters();
 </script>
 </body>

@@ -1,121 +1,461 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Books - Freedom Library</title>
+    <title>Books — Freedom Library</title>
     <link rel="stylesheet" href="./CSS/style.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
+    <style>
+      .page-hero {
+        background:
+          linear-gradient(
+            135deg,
+            rgba(67, 97, 238, 0.92),
+            rgba(63, 55, 201, 0.95)
+          ),
+          url("https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1200")
+            center/cover;
+        color: white;
+        padding: 60px 0 50px;
+        text-align: center;
+      }
+      .page-hero h1 {
+        font-size: 2.6rem;
+        font-weight: 800;
+        margin-bottom: 10px;
+      }
+      .page-hero p {
+        font-size: 1.1rem;
+        opacity: 0.9;
+        max-width: 560px;
+        margin: 0 auto 24px;
+      }
+      .page-search {
+        display: flex;
+        max-width: 560px;
+        margin: 0 auto;
+        background: white;
+        border-radius: 50px;
+        overflow: hidden;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+      }
+      .page-search input {
+        flex: 1;
+        padding: 14px 22px;
+        border: none;
+        outline: none;
+        font-size: 0.95rem;
+        color: #212529;
+      }
+      .page-search button {
+        padding: 0 24px;
+        background: var(--accent);
+        color: white;
+        border: none;
+        cursor: pointer;
+        font-weight: 600;
+        font-size: 0.95rem;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      .page-search button:hover {
+        background: #38b6e0;
+      }
+      .filter-bar {
+        background: white;
+        border-bottom: 1px solid var(--light-gray);
+        padding: 14px 0;
+        position: sticky;
+        top: 65px;
+        z-index: 50;
+      }
+      .filter-bar-inner {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+      .filter-pills {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        flex: 1;
+      }
+      .pill {
+        padding: 7px 18px;
+        border-radius: 30px;
+        border: 2px solid var(--light-gray);
+        background: white;
+        cursor: pointer;
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: var(--gray);
+        transition: var(--transition);
+      }
+      .pill:hover,
+      .pill.active {
+        background: var(--primary);
+        color: white;
+        border-color: var(--primary);
+      }
+      .sort-select {
+        padding: 8px 14px;
+        border: 2px solid var(--light-gray);
+        border-radius: 8px;
+        font-size: 0.85rem;
+        color: var(--dark);
+        background: white;
+        cursor: pointer;
+        outline: none;
+      }
+      .results-count {
+        font-size: 0.85rem;
+        color: var(--gray);
+        white-space: nowrap;
+      }
+      .content-section {
+        padding: 40px 0 80px;
+        background: #f5f7fb;
+      }
+      .resource-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+        gap: 24px;
+      }
+      .book-card {
+        background: white;
+        border-radius: 14px;
+        overflow: hidden;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+        transition: var(--transition);
+        border: 1px solid var(--light-gray);
+        display: flex;
+        flex-direction: column;
+      }
+      .book-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+        border-color: rgba(67, 97, 238, 0.2);
+      }
+      .book-cover {
+        height: 170px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 3.8rem;
+        position: relative;
+      }
+      .book-cover.math {
+        background: linear-gradient(135deg, #dbeafe, #bfdbfe);
+        color: #1d4ed8;
+      }
+      .book-cover.physics {
+        background: linear-gradient(135deg, #ede9fe, #ddd6fe);
+        color: #5b21b6;
+      }
+      .book-cover.chem {
+        background: linear-gradient(135deg, #d1fae5, #a7f3d0);
+        color: #065f46;
+      }
+      .book-cover.bio {
+        background: linear-gradient(135deg, #dcfce7, #bbf7d0);
+        color: #14532d;
+      }
+      .book-cover.cs {
+        background: linear-gradient(135deg, #fce7f3, #fbcfe8);
+        color: #9d174d;
+      }
+      .book-pages {
+        position: absolute;
+        bottom: 10px;
+        right: 14px;
+        font-size: 0.72rem;
+        font-weight: 700;
+        background: rgba(255, 255, 255, 0.85);
+        padding: 3px 8px;
+        border-radius: 20px;
+        color: var(--gray);
+      }
+      .book-body {
+        padding: 18px;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+      }
+      .book-subject-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        font-size: 0.72rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        padding: 3px 10px;
+        border-radius: 20px;
+        margin-bottom: 8px;
+      }
+      .book-body h3 {
+        font-size: 0.98rem;
+        font-weight: 700;
+        color: var(--dark);
+        margin-bottom: 5px;
+        line-height: 1.4;
+      }
+      .book-author {
+        font-size: 0.83rem;
+        color: var(--gray);
+        margin-bottom: 12px;
+      }
+      .book-meta {
+        display: flex;
+        gap: 14px;
+        margin-bottom: 14px;
+        font-size: 0.8rem;
+        color: var(--gray);
+      }
+      .book-meta span {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+      }
+      .book-actions {
+        display: flex;
+        gap: 8px;
+        margin-top: auto;
+      }
+      .btn-read {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        padding: 9px;
+        background: var(--primary);
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 0.85rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: var(--transition);
+        text-decoration: none;
+      }
+      .btn-read:hover {
+        background: var(--secondary);
+        text-decoration: none;
+      }
+      .btn-save {
+        width: 38px;
+        height: 38px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--light-gray);
+        color: var(--gray);
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: var(--transition);
+      }
+      .btn-save:hover {
+        background: #fee2e2;
+        color: #ef4444;
+      }
+      .no-results {
+        text-align: center;
+        padding: 60px 20px;
+        color: var(--gray);
+        grid-column: 1/-1;
+      }
+      .no-results i {
+        font-size: 3rem;
+        opacity: 0.25;
+        display: block;
+        margin-bottom: 16px;
+      }
+      .no-results h3 {
+        margin-bottom: 8px;
+        color: var(--dark);
+      }
+      .load-more-wrap {
+        text-align: center;
+        margin-top: 40px;
+      }
+      @media (max-width: 640px) {
+        .page-hero h1 {
+          font-size: 2rem;
+        }
+        .filter-bar-inner {
+          gap: 8px;
+        }
+      }
+    </style>
   </head>
   <body>
-    <!-- Header -->
     <header>
       <div class="container header-content">
         <div class="logo">
-          <i class="fas fa-book-open"></i>
-          <span>Freedom Library</span>
+          <i class="fas fa-book-open"></i><span>Freedom Library</span>
         </div>
-        <nav>
+        <button class="menu-toggle" onclick="toggleMenu()">
+          <i class="fas fa-bars"></i>
+        </button>
+        <nav id="main-nav">
           <ul>
             <li><a href="./index.html">Home</a></li>
             <li><a href="./book.html" class="active">Books</a></li>
             <li><a href="./videos.html">Videos</a></li>
             <li><a href="./Courses.html">Courses</a></li>
-            <li><a href="./Past Questions.html">Past Questions</a></li>
-            <li><a href="./about.html">About Us</a></li>
+            <li><a href="./past-questions.html">Past Questions</a></li>
+            <li><a href="./about.html">About</a></li>
           </ul>
         </nav>
+        <div class="auth-buttons" id="auth-buttons">
+          <button class="btn btn-outline" onclick="openModal('login-modal')">
+            <i class="fas fa-sign-in-alt"></i> Login
+          </button>
+          <button class="btn btn-primary" onclick="openModal('register-modal')">
+            <i class="fas fa-user-plus"></i> Register
+          </button>
+        </div>
+        <div class="user-greeting" id="user-greeting">
+          <i class="fas fa-user-circle" style="font-size: 1.4rem"></i>
+          <span id="greeting-name">Student</span>
+          <button
+            class="btn btn-outline"
+            onclick="logout()"
+            style="padding: 6px 14px; font-size: 0.85rem"
+          >
+            <i class="fas fa-sign-out-alt"></i> Logout
+          </button>
+        </div>
       </div>
     </header>
 
-    <!-- Page Hero -->
-    <section class="hero">
+    <section class="page-hero">
       <div class="container">
-        <h1>Books Collection</h1>
+        <h1>
+          <i
+            class="fas fa-book"
+            style="color: var(--accent); margin-right: 12px"
+          ></i
+          >Books Collection
+        </h1>
         <p>
-          Browse through our curated library of academic textbooks and
-          references.
+          Browse hundreds of academic textbooks across all disciplines — free to
+          read and download.
         </p>
-      </div>
-    </section>
-
-    <!-- Books Grid -->
-    <section class="resources">
-      <div class="container">
-        <div class="resource-grid">
-          <div class="resource-card">
-            <div class="resource-img"><i class="fas fa-book"></i></div>
-            <div class="resource-info">
-              <h3>Advanced Mathematics</h3>
-              <p>Dr. Johnson</p>
-              <div class="resource-meta">
-                <span><i class="fas fa-tag"></i> Mathematics</span>
-                <span><i class="fas fa-calendar"></i> 2022</span>
-              </div>
-              <a href="#" class="btn-small">Read Book</a>
-            </div>
-          </div>
-
-          <div class="resource-card">
-            <div class="resource-img"><i class="fas fa-book"></i></div>
-            <div class="resource-info">
-              <h3>Organic Chemistry</h3>
-              <p>Dr. Roberts</p>
-              <div class="resource-meta">
-                <span><i class="fas fa-tag"></i> Chemistry</span>
-                <span><i class="fas fa-calendar"></i> 2023</span>
-              </div>
-              <a href="#" class="btn-small">Read Book</a>
-            </div>
-          </div>
+        <div class="page-search">
+          <input
+            type="text"
+            id="book-search"
+            placeholder="Search by title, author, subject..."
+          />
+          <button onclick="doSearch()">
+            <i class="fas fa-search"></i> Search
+          </button>
         </div>
       </div>
     </section>
 
-    <!-- Footer -->
-    <!-- Footer -->
+    <div class="filter-bar">
+      <div class="container filter-bar-inner">
+        <div class="filter-pills">
+          <button
+            class="pill active"
+            data-subject="all"
+            onclick="filterSubject('all', this)"
+          >
+            All Subjects
+          </button>
+          <button
+            class="pill"
+            data-subject="Mathematics"
+            onclick="filterSubject('Mathematics', this)"
+          >
+            Mathematics
+          </button>
+          <button
+            class="pill"
+            data-subject="Physics"
+            onclick="filterSubject('Physics', this)"
+          >
+            Physics
+          </button>
+          <button
+            class="pill"
+            data-subject="Chemistry"
+            onclick="filterSubject('Chemistry', this)"
+          >
+            Chemistry
+          </button>
+          <button
+            class="pill"
+            data-subject="Biology"
+            onclick="filterSubject('Biology', this)"
+          >
+            Biology
+          </button>
+          <button
+            class="pill"
+            data-subject="Computer Science"
+            onclick="filterSubject('Computer Science', this)"
+          >
+            Computer Science
+          </button>
+        </div>
+        <select class="sort-select" id="sort-select" onchange="applyFilters()">
+          <option value="newest">Newest First</option>
+          <option value="oldest">Oldest First</option>
+          <option value="az">A to Z</option>
+          <option value="za">Z to A</option>
+        </select>
+        <span class="results-count" id="results-count"></span>
+      </div>
+    </div>
+
+    <section class="content-section">
+      <div class="container">
+        <div class="resource-grid" id="books-grid"></div>
+        <div class="load-more-wrap" id="load-more-wrap" style="display: none">
+          <button class="btn btn-secondary" onclick="loadMore()">
+            <i class="fas fa-plus"></i> Load More Books
+          </button>
+        </div>
+      </div>
+    </section>
+
     <footer>
       <div class="container footer-content">
         <div class="footer-column">
           <h3>Freedom Library</h3>
           <p>
-            Your academic resource hub with textbooks, courses, and
-            past-questions.
+            Your academic resource hub — textbooks, videos, courses, and past
+            questions, all free.
           </p>
           <div class="social-links">
-            <a href="#" title="Facebook" aria-label="Facebook"
-              ><i class="fab fa-facebook-f" aria-hidden="true"></i
-              ><span class="sr-only">Facebook</span></a
-            >
-            <a href="#" title="Twitter" aria-label="Twitter"
-              ><i class="fab fa-twitter" aria-hidden="true"></i
-              ><span class="sr-only">Twitter</span></a
-            >
-            <a href="#" title="Instagram" aria-label="Instagram"
-              ><i class="fab fa-instagram" aria-hidden="true"></i
-              ><span class="sr-only">Instagram</span></a
-            >
-            <a href="#" title="LinkedIn" aria-label="LinkedIn"
-              ><i class="fab fa-linkedin-in" aria-hidden="true"></i
-              ><span class="sr-only">LinkedIn</span></a
-            >
+            <a href="#"><i class="fab fa-facebook-f"></i></a
+            ><a href="#"><i class="fab fa-twitter"></i></a
+            ><a href="#"><i class="fab fa-instagram"></i></a
+            ><a href="#"><i class="fab fa-linkedin-in"></i></a>
           </div>
         </div>
         <div class="footer-column">
           <h3>Quick Links</h3>
           <ul class="footer-links">
-            <li><a href="./home.html">Home</a></li>
+            <li><a href="./index.html">Home</a></li>
             <li><a href="./book.html">Books</a></li>
             <li><a href="./videos.html">Videos</a></li>
             <li><a href="./Courses.html">Courses</a></li>
-            <li><a href="./Past Questions.html">Past Questions</a></li>
+            <li><a href="./past-questions.html">Past Questions</a></li>
           </ul>
         </div>
         <div class="footer-column">
-          <h3>Resources</h3>
+          <h3>Subjects</h3>
           <ul class="footer-links">
             <li><a href="#">Mathematics</a></li>
             <li><a href="#">Physics</a></li>
@@ -127,9 +467,27 @@
         <div class="footer-column">
           <h3>Contact</h3>
           <ul class="footer-links">
-            <li><i class="fas fa-envelope"></i> info@Freedom Library.edu</li>
-            <li><i class="fas fa-phone"></i> +234 9018245357</li>
-            <li><i class="fas fa-map-marker-alt"></i> Academic City Campus</li>
+            <li>
+              <i
+                class="fas fa-envelope"
+                style="margin-right: 8px; color: var(--accent)"
+              ></i
+              >info@freedomlibrary.edu.ng
+            </li>
+            <li>
+              <i
+                class="fas fa-phone"
+                style="margin-right: 8px; color: var(--accent)"
+              ></i
+              >+234 901 824 5357
+            </li>
+            <li>
+              <i
+                class="fas fa-map-marker-alt"
+                style="margin-right: 8px; color: var(--accent)"
+              ></i
+              >Academic City Campus
+            </li>
           </ul>
         </div>
       </div>
@@ -137,5 +495,381 @@
         <p>&copy; 2025 Freedom Library. All rights reserved.</p>
       </div>
     </footer>
+
+    <div
+      class="modal-overlay"
+      id="login-modal"
+      onclick="closeModalOutside(event, 'login-modal')"
+    >
+      <div class="modal">
+        <div class="modal-header">
+          <h2><i class="fas fa-sign-in-alt"></i> Login</h2>
+          <button class="close-btn" onclick="closeModal('login-modal')">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="alert" id="login-alert"></div>
+          <form id="login-form" onsubmit="handleLogin(event)">
+            <div class="form-group">
+              <label>Email Address</label
+              ><input
+                type="email"
+                id="login-email"
+                placeholder="Enter your email"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label>Password</label
+              ><input
+                type="password"
+                id="login-password"
+                placeholder="Enter your password"
+                required
+              />
+            </div>
+            <button type="submit" class="btn btn-primary" id="login-btn">
+              <i class="fas fa-sign-in-alt"></i> Login
+            </button>
+          </form>
+          <div class="switch-modal">
+            Don't have an account?
+            <a onclick="switchModal('login-modal', 'register-modal')"
+              >Register here</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="modal-overlay"
+      id="register-modal"
+      onclick="closeModalOutside(event, 'register-modal')"
+    >
+      <div class="modal">
+        <div class="modal-header">
+          <h2><i class="fas fa-user-plus"></i> Register</h2>
+          <button class="close-btn" onclick="closeModal('register-modal')">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="alert" id="register-alert"></div>
+          <form id="register-form" onsubmit="handleRegister(event)">
+            <div class="form-group">
+              <label>Full Name</label
+              ><input
+                type="text"
+                id="reg-name"
+                placeholder="Enter your full name"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label>Email Address</label
+              ><input
+                type="email"
+                id="reg-email"
+                placeholder="Enter your email"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label>I am a</label
+              ><select
+                id="reg-role"
+                style="
+                  width: 100%;
+                  padding: 12px 15px;
+                  border: 2px solid var(--light-gray);
+                  border-radius: 10px;
+                  font-size: 0.95rem;
+                "
+              >
+                <option value="student">Student</option>
+                <option value="lecturer">Lecturer</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Password</label
+              ><input
+                type="password"
+                id="reg-password"
+                placeholder="Min. 8 characters"
+                required
+                minlength="8"
+              />
+            </div>
+            <button type="submit" class="btn btn-primary" id="register-btn">
+              <i class="fas fa-user-plus"></i> Create Account
+            </button>
+          </form>
+          <div class="switch-modal">
+            Already have an account?
+            <a onclick="switchModal('register-modal', 'login-modal')"
+              >Login here</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="./JS/shared.js"></script>
+    <script>
+      const BOOKS = [
+        {
+          id: 1,
+          title: "Advanced Calculus",
+          author: "Dr. Helen Johnson",
+          subject: "Mathematics",
+          year: 2023,
+          pages: 420,
+          cover: "math",
+          icon: "fa-calculator",
+        },
+        {
+          id: 2,
+          title: "Organic Chemistry Fundamentals",
+          author: "Dr. Roberts",
+          subject: "Chemistry",
+          year: 2022,
+          pages: 560,
+          cover: "chem",
+          icon: "fa-flask",
+        },
+        {
+          id: 3,
+          title: "Introduction to Biology",
+          author: "Prof. Okafor",
+          subject: "Biology",
+          year: 2023,
+          pages: 380,
+          cover: "bio",
+          icon: "fa-leaf",
+        },
+        {
+          id: 4,
+          title: "Classical Mechanics",
+          author: "Dr. Adeyemi",
+          subject: "Physics",
+          year: 2021,
+          pages: 490,
+          cover: "physics",
+          icon: "fa-atom",
+        },
+        {
+          id: 5,
+          title: "Data Structures and Algorithms",
+          author: "Dr. Chukwu",
+          subject: "Computer Science",
+          year: 2023,
+          pages: 310,
+          cover: "cs",
+          icon: "fa-code",
+        },
+        {
+          id: 6,
+          title: "Linear Algebra and Its Applications",
+          author: "Prof. Nwosu",
+          subject: "Mathematics",
+          year: 2022,
+          pages: 440,
+          cover: "math",
+          icon: "fa-calculator",
+        },
+        {
+          id: 7,
+          title: "Physical Chemistry",
+          author: "Dr. Eze",
+          subject: "Chemistry",
+          year: 2021,
+          pages: 520,
+          cover: "chem",
+          icon: "fa-flask",
+        },
+        {
+          id: 8,
+          title: "Cell and Molecular Biology",
+          author: "Dr. Adebayo",
+          subject: "Biology",
+          year: 2022,
+          pages: 600,
+          cover: "bio",
+          icon: "fa-leaf",
+        },
+        {
+          id: 9,
+          title: "Electromagnetism and Waves",
+          author: "Prof. Bello",
+          subject: "Physics",
+          year: 2023,
+          pages: 350,
+          cover: "physics",
+          icon: "fa-bolt",
+        },
+        {
+          id: 10,
+          title: "Database Management Systems",
+          author: "Dr. Ibrahim",
+          subject: "Computer Science",
+          year: 2022,
+          pages: 390,
+          cover: "cs",
+          icon: "fa-database",
+        },
+        {
+          id: 11,
+          title: "Numerical Methods",
+          author: "Dr. Okeke",
+          subject: "Mathematics",
+          year: 2021,
+          pages: 280,
+          cover: "math",
+          icon: "fa-square-root-alt",
+        },
+        {
+          id: 12,
+          title: "Inorganic Chemistry",
+          author: "Prof. Salami",
+          subject: "Chemistry",
+          year: 2023,
+          pages: 410,
+          cover: "chem",
+          icon: "fa-flask",
+        },
+      ];
+
+      const SBADGE = {
+        Mathematics: "#dbeafe|#1d4ed8",
+        Physics: "#ede9fe|#5b21b6",
+        Chemistry: "#d1fae5|#065f46",
+        Biology: "#dcfce7|#14532d",
+        "Computer Science": "#fce7f3|#9d174d",
+      };
+      function sbStyle(s) {
+        const c = (SBADGE[s] || "#f3f4f6|#374151").split("|");
+        return `background:${c[0]};color:${c[1]}`;
+      }
+
+      let activeSubject = "all",
+        searchTerm = "",
+        visibleCount = 8,
+        _filtered = BOOKS;
+
+      function renderBooks(list) {
+        const grid = document.getElementById("books-grid");
+        const wrap = document.getElementById("load-more-wrap");
+        const cnt = document.getElementById("results-count");
+        _filtered = list;
+        if (cnt)
+          cnt.textContent = `${list.length} book${list.length !== 1 ? "s" : ""} found`;
+        if (!list.length) {
+          grid.innerHTML = `<div class="no-results"><i class="fas fa-book"></i><h3>No books found</h3><p>Try a different subject or search term.</p></div>`;
+          if (wrap) wrap.style.display = "none";
+          return;
+        }
+        if (wrap)
+          wrap.style.display = list.length > visibleCount ? "block" : "none";
+        grid.innerHTML = list
+          .slice(0, visibleCount)
+          .map(
+            (b) => `
+    <div class="book-card">
+      <div class="book-cover ${b.cover}"><i class="fas ${b.icon}"></i><span class="book-pages">${b.pages}pp</span></div>
+      <div class="book-body">
+        <span class="book-subject-badge" style="${sbStyle(b.subject)}"><i class="fas fa-tag"></i> ${b.subject}</span>
+        <h3>${b.title}</h3>
+        <p class="book-author"><i class="fas fa-user-tie" style="margin-right:5px;opacity:.6"></i>${b.author}</p>
+        <div class="book-meta"><span><i class="fas fa-calendar"></i> ${b.year}</span><span><i class="fas fa-file-alt"></i> ${b.pages} pages</span></div>
+        <div class="book-actions">
+          <a href="#" class="btn-read" onclick="handleRead(event,${b.id},'${b.title}')"><i class="fas fa-book-open"></i> Read Book</a>
+          <button class="btn-save" title="Save" onclick="handleSave(${b.id},'${b.title}')"><i class="fas fa-bookmark"></i></button>
+        </div>
+      </div>
+    </div>`,
+          )
+          .join("");
+        grid.querySelectorAll(".book-card").forEach((c, i) => {
+          c.style.opacity = "0";
+          c.style.transform = "translateY(16px)";
+          setTimeout(() => {
+            c.style.transition = "opacity .3s ease,transform .3s ease";
+            c.style.opacity = "1";
+            c.style.transform = "translateY(0)";
+          }, i * 55);
+        });
+      }
+
+      function applyFilters() {
+        const sort = document.getElementById("sort-select")?.value || "newest";
+        let f = BOOKS.filter(
+          (b) =>
+            (activeSubject === "all" || b.subject === activeSubject) &&
+            (!searchTerm ||
+              b.title.toLowerCase().includes(searchTerm) ||
+              b.author.toLowerCase().includes(searchTerm) ||
+              b.subject.toLowerCase().includes(searchTerm)),
+        );
+        if (sort === "newest") f.sort((a, b) => b.year - a.year);
+        else if (sort === "oldest") f.sort((a, b) => a.year - b.year);
+        else if (sort === "az")
+          f.sort((a, b) => a.title.localeCompare(b.title));
+        else f.sort((a, b) => b.title.localeCompare(a.title));
+        visibleCount = 8;
+        renderBooks(f);
+      }
+
+      function filterSubject(s, btn) {
+        activeSubject = s;
+        document
+          .querySelectorAll(".pill")
+          .forEach((p) => p.classList.remove("active"));
+        if (btn) btn.classList.add("active");
+        else
+          document.querySelectorAll(".pill").forEach((p) => {
+            if (p.dataset.subject === s) p.classList.add("active");
+          });
+        applyFilters();
+      }
+
+      function doSearch() {
+        searchTerm = document
+          .getElementById("book-search")
+          .value.trim()
+          .toLowerCase();
+        applyFilters();
+      }
+      function loadMore() {
+        visibleCount += 8;
+        renderBooks(_filtered);
+      }
+      function handleRead(e, id, title) {
+        e.preventDefault();
+        if (!getUser()) {
+          openModal("login-modal");
+          showToast("Please log in to read books.", "info");
+          return;
+        }
+        showToast(`Opening "${title}"...`, "success");
+      }
+      function handleSave(id, title) {
+        if (!getUser()) {
+          openModal("login-modal");
+          showToast("Please log in to save books.", "info");
+          return;
+        }
+        showToast(`"${title}" saved!`, "success");
+      }
+
+      document
+        .getElementById("book-search")
+        .addEventListener("keydown", (e) => {
+          if (e.key === "Enter") doSearch();
+        });
+      const urlS = new URLSearchParams(location.search).get("subject");
+      if (urlS) filterSubject(urlS, null);
+      else applyFilters();
+    </script>
   </body>
 </html>
